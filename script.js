@@ -1,1 +1,0 @@
-console.log("AI Dream Labs coming soon page loaded.");
