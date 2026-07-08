@@ -11,6 +11,13 @@ html
   scroll-behavior: smooth;
 }
 
+/* Prevents accidental horizontal scrolling from wide elements. */
+html,
+body
+{
+  overflow-x: hidden;
+}
+
 body
 {
   min-height: 100hv;
