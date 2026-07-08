@@ -26,14 +26,24 @@
 }
 
 /* Small visual mark beside the brand name. */
-.brand__mark {
+.brand__mark 
+{
   display: inline-grid;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(247, 247, 251, 0.18);
   border-radius: 50%;
-  color: #080912;
-  background: #f7f7fb;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Keeps the brand icon contained inside the circular mark */
+.brand__mark img
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Header navigation links. */
@@ -142,6 +152,66 @@
   backdrop-filter: blur(18px);
 }
 
+/* Decorative top bar for the preview console card. */
+.hero-card__topbar
+{
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+/* Small window control dowts in the preview card */
+.hero-card__topbar span
+{
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(247, 247, 251, 0.28);
+}
+
+/* Prompt area inside the preview card */
+.hero-card__prompt, 
+.hero-card__result
+{
+  padding: 18px;
+  border: 1px solid rgba(247, 247, 251, 0.12);
+  border-radius: 18px;
+  background: rgba(8, 9, 18, .42);
+}
+
+/* Adds spacing between prompt and generated result blocks */
+.hero-card__result
+{
+  margin-top: 14px;
+}
+
+/* Labels inside the preview console. */
+.hero-card__prompt span,
+.hero-card__result span
+{
+  display: block;
+  margin-bottom: 10px;
+  color: #9ea4ff;
+  font-size: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-card__prompt p
+{
+  color: #f7f7fb;
+  line-height: 1.55;;
+}
+
+.hero-card__result ul
+{
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  color: #c8c9d8;
+  line-height: 1.5;
+}
+
 .hero-card__label {
   margin-bottom: 16px;
   color: #9ea4ff;
@@ -169,6 +239,22 @@
 .site-footer {
   width: min(1120px, 92%);
   margin: 0 auto;
+}
+
+/* Small numbered badge for each feature card. */
+.feature-card__icon
+{
+  display: -ms-inline-grid;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 22px;
+  place-items: center;
+  border: 1px solid rgba(158, 164, 255, 0.32);
+  border-radius: 14px;
+  color: #df31ff;
+  background: rgba(158, 164, 255, 0.12);
+  font-size: 0.82rem;
+  font-weight: 900;
 }
 
 /* Section heading wrapper. */

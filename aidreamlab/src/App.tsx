@@ -7,7 +7,9 @@ export default function App()
     <>
       <header className="site-header">
         <a href="/" className="brand" aria-label="AIDreamLab Home">
-          <span className="brand__mark">+</span>
+          <span className="brand__mark" aria-hidden="true">
+            <img src="/dazbog.png" alt="Dazbog" />
+          </span>
           <span className="brand__name">AI Dream Lab</span>
         </a>
 
@@ -23,11 +25,12 @@ export default function App()
           <div className="hero__content">
             <p className="eyebrow">AI creator tools for the next idea</p>
             
-            <h1>Build, create, and launch with AI at your side.</h1>
+            <h1>Turn rough ideas into launch-ready creative work.</h1>
 
             <p className="hero__description">
-              AI Dream Lab is a coming-soon creative AI workspace inspired by the power
-              of Dazbog, redesigned for American creators, small businesses, and builders.
+              AI Dream Labs is a coming-soon creative AI workspace inspired by Dazbog,
+              redesigned for American creators, small businesses, and builders who want
+              faster content, sharper visuals, and practical launch tools in one place.
             </p>
 
             <div className="hero__actions">
@@ -37,12 +40,28 @@ export default function App()
           </div>
 
           <aside className="hero-card" aria-label="AI Dream Lab preview">
-            <p className="hero-card__label">Preview</p>
-            <h2>Creator Console</h2>
-            <p>
-              Draft content, generate visuals, organize ideas, and prepare launches
-              from one focused AI workspace.
-            </p>
+            <div className="hero-card__topbar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <p className="hero-card__label">Creator Console</p>
+            
+            <div className="hero-card__prompt">
+              <span>Prompt</span>
+              <p>Launch a new product campaign for a small business.</p>
+            </div>
+
+            <div className="hero-card__result">
+              <span>AI Output</span>
+              <ul>
+                <li>Generate landing page copy</li>
+                <li>Create social captions</li>
+                <li>Draft customer email</li>
+                <li>Suggest launch visuals</li>
+              </ul>
+            </div>
           </aside>
         </section>
 
@@ -54,16 +73,19 @@ export default function App()
 
           <div className="feature-grid">
             <article className="feature-card">
+              <span className="feature-card__icon">01</span>
               <h3>Content creation</h3>
               <p>Create posts, captions, ads, emails, and product copy faster.</p>
             </article>
 
             <article className="feature-card">
+              <span className="feature-card__icon">02</span>
               <h3>Image generation</h3>
               <p>Turn campaign ideas, brand concepts, and product prompts into visuals.</p>
             </article>
 
             <article className="feature-card">
+              <span className="feature-card__icon">03</span>
               <h3>Brand workspace</h3>
               <p>Keep tones, ideas, drafts, and reusable brand direction in one place.</p>
             </article>
