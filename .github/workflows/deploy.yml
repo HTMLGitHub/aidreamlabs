@@ -1,0 +1,65 @@
+# Builds and deploys the AIDreamLabs Vite app to GitHub Pages.
+
+name: Deploy AIDreamLabs site
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: aidreamlabs-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Vite app
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out the repository so the workflow can build the app.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Installs the Node version used to build the Vite app.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: aidreamlab/package-lock.json
+
+      # Installs dependencies from the Vite app folder.
+      - name: Install dependencies
+        working-directory: aidreamlab
+        run: npm ci
+
+      # Builds the production version of the Vite app.
+      - name: Build
+        working-directory: aidreamlab
+        run: npm run build
+
+      # Uploads the built site files for GitHub Pages.
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: aidreamlab/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+
+    steps:
+      # Publishes the uploaded Vite build to GitHub Pages.
+      - name: Deploy
+        uses: actions/deploy-pages@v4
