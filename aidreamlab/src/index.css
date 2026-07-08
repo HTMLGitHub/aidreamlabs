@@ -1,0 +1,18 @@
+/* Global base styles for the AI Dream Lab landing page. */
+*
+{
+  box-sizing: border-box;
+}
+
+body
+{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #050816;
+  color: #fff;
+}
+
+button, input
+{
+  font: inherit;
+}
