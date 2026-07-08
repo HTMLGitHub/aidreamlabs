@@ -2,14 +2,23 @@
 *
 {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html
+{
+  scroll-behavior: smooth;
 }
 
 body
 {
-  margin: 0;
+  min-height: 100hv;
   font-family: Arial, Helvetica, sans-serif;
-  background: #050816;
-  color: #fff;
+  color: #f7f7fb;
+  background: 
+    radial-gradient(circle at top left, rgba(92, 95, 255, 0.35), transparent 35%),
+    linear-gradient(135deg, #080912 0%, #14172a 50%, #080912 100%);
 }
 
 button, input
