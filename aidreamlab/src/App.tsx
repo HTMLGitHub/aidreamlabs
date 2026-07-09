@@ -1,8 +1,42 @@
 // Main app component for the AIDreamLab landing page
+import { useState } from 'react';
+import type { SyntheticEvent } from 'react';
 import './App.css';
 
 export default function App()
 {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  async function handleWaitListSubmit(e: SyntheticEvent<HTMLFormElement>)
+  {
+    e.preventDefault(); 
+    setStatus('loading');
+
+    const formData = new FormData();
+    formData.append('EMAIL', email);
+    formData.append('locale', 'en');
+    formData.append('email_address_check', ''); // honeypot field - must stay empty
+
+    try 
+    {
+      await fetch(
+        'https://e5fa72de.sibforms.com/serve/MUIFAGTIm0KRTPS3SiUHFjXLB8nitH72rLp98fc8Mp4OLkThosxSH9xZZqf4xOpNsPv69_Xzdr7no4GgSXHW6kJXy4M1iX-qAuTFKUdSs1lD94P7ImuXC5EkFMwy3JLckx-wOHE73SXLFQo2Wd8DLAOgxOrf4duTod07HfpEavHTzKOof8IPsKU1SM0QjOXRWPUZwjEmpH0ONdz7',
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData,
+        }
+      );
+      // mode: no-cors means we cannot read the real response, so we assume success
+      setStatus('success');
+      setEmail('');
+    } catch
+    {
+      setStatus('error');
+    }
+  }
+
   return(
     <>
       <header className="site-header">
@@ -100,7 +134,7 @@ export default function App()
 
           <p>
             AI Dream Lab is being shaped as an American AI creator platform, using
-            Dazbog-style functionality as a foundation while aailoring the experience,
+            Dazbog-style functionality as a foundation while tailoring the experience,
             messaging, and product flow for U.S. users.
           </p>
         </section>
@@ -109,15 +143,32 @@ export default function App()
           <p className="eyebrow">Coming Soon</p>
           <h2>Be first in line when the lab opens.</h2>
           <p>
-            The waitlist form will be connected in a later phase. For now, this section
-            gives the page a clear launch direction.
+             Drop your email below and we'll let you know the moment AI Dream Lab opens its doors.
           </p>
 
           <form className="waitlist-form">
             <label htmlFor="email" className="sr-only">Email address</label>
-            <input type="email" id="email" placeholder="you@example.com" disabled/>
-            <button className="button button--primary" type="button" disabled>Join soon</button>
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              required
+              disabled={status === 'loading' || status === 'success'}
+            />
+            <button 
+              className="button button--primary" 
+              type="submit" 
+              disabled={status === 'loading' || status === 'success'}
+            >
+              {status === 'success' ? "You're on the list!" : status === 'loading' ? "Joining..." : "Join Soon"}
+            </button>
           </form>
+          {status==='error' && 
+          (
+            <p className="waitlist-error">Something went wrong - please try again.</p>
+          )}
         </section>
       </main>
 
