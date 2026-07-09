@@ -146,7 +146,7 @@ export default function App()
              Drop your email below and we'll let you know the moment AI Dream Lab opens its doors.
           </p>
 
-          <form className="waitlist-form">
+          <form className="waitlist-form" onSubmit={handleWaitListSubmit}>
             <label htmlFor="email" className="sr-only">Email address</label>
             <input 
               type="email" 
