@@ -228,7 +228,7 @@
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.hero-card__result li.is-thinking
+.hero-card__result li.is-thinking,
 .hero-card__result li.is-visible
 {
   opacity: 1;
@@ -251,7 +251,7 @@
 }
 
 .thinking-dots span:nth-child(2) {animation-delay: 0.15s;}
-.thinking-dots span:nth-child(3) {animation-delay: 0.3;}
+.thinking-dots span:nth-child(3) {animation-delay: 0.3s;}
 
 .hero-card__label {
   margin-bottom: 16px;
