@@ -3,10 +3,28 @@ import { useState, useEffect} from 'react';
 import type { SyntheticEvent } from 'react';
 import './App.css';
 
+const DEMO_OUTPUTS =
+[
+  'Generate landing page copy',
+  'Create social captions',
+  'Draft customer email',
+  'Suggest launch visuals',
+];
+
 export default function App()
 {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [visualCount, setVisualCount] = useState(0);
+
+  useEffect(() =>
+  {
+    const interval = setInterval(() =>
+    {
+      setVisualCount((prev) => (prev >= DEMO_OUTPUTS.length ? 0 : prev + 1));
+    }, 900);
+    return () => clearInterval(interval);
+  }, []);
 
   async function handleWaitListSubmit(e: SyntheticEvent<HTMLFormElement>)
   {
@@ -112,10 +130,12 @@ export default function App()
             <div className="hero-card__result">
               <span>AI Output</span>
               <ul>
-                <li>Generate landing page copy</li>
-                <li>Create social captions</li>
-                <li>Draft customer email</li>
-                <li>Suggest launch visuals</li>
+                {DEMO_OUTPUTS.map((item, index) =>
+                (
+                  <li key={item} className={index < visualCount ? 'is-visible' : ''}>
+                    {item}
+                  </li>
+                ))}                
               </ul>
             </div>
           </aside>
