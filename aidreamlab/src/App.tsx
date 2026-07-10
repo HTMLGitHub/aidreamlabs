@@ -1,5 +1,5 @@
 // Main app component for the AIDreamLab landing page
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import type { SyntheticEvent } from 'react';
 import './App.css';
 
@@ -37,6 +37,28 @@ export default function App()
     }
   }
 
+  useEffect(() =>
+  {
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      (entries) =>
+      {
+        entries.forEach((entry) =>
+        {
+          if(entry.isIntersecting)
+          {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {threshold: 0.2}
+    );
+
+    revealEls.forEach((el)=> observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return(
     <>
       <header className="site-header">
@@ -59,7 +81,7 @@ export default function App()
           <div className="hero__content">
             <p className="eyebrow">AI creator tools for the next idea</p>
             
-            <h1>Turn rough ideas into launch-ready creative work.</h1>
+            <h1>Skip the creative agency. Launch your next campaign yourself.</h1>
 
             <p className="hero__description">
               AI Dream Labs is a coming-soon creative AI workspace inspired by Dazbog,
@@ -106,19 +128,19 @@ export default function App()
           </div>
 
           <div className="feature-grid">
-            <article className="feature-card">
+            <article className="feature-card reveal">
               <span className="feature-card__icon">01</span>
               <h3>Content creation</h3>
               <p>Create posts, captions, ads, emails, and product copy faster.</p>
             </article>
 
-            <article className="feature-card">
+            <article className="feature-card reveal">
               <span className="feature-card__icon">02</span>
               <h3>Image generation</h3>
               <p>Turn campaign ideas, brand concepts, and product prompts into visuals.</p>
             </article>
 
-            <article className="feature-card">
+            <article className="feature-card reveal">
               <span className="feature-card__icon">03</span>
               <h3>Brand workspace</h3>
               <p>Keep tones, ideas, drafts, and reusable brand direction in one place.</p>
