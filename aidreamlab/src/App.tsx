@@ -11,19 +11,70 @@ const DEMO_OUTPUTS =
   'Suggest launch visuals',
 ];
 
+// Small delay helper for the simulated "thinking" animation below
+function sleep(ms: number)
+{
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const COUNTER_ENDPOINT = 'https://aidreamlab-counter.quantumarcllc.workers.dev';
+
 export default function App()
 {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [visualCount, setVisualCount] = useState(0);
+  const [revealedCount, setRevealedCount] = useState(0);
+  const [thinkingIndex, setThinkingIndex] = useState(-1);
+  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
+
+  useEffect(()=> 
+  {
+    fetch(COUNTER_ENDPOINT)
+    .then((res) => (res.ok ? res.json() : null))
+    .then((data) => {if (data?.count) setWaitlistCount(data.count);})
+      .catch(() => {}); // Stay silent if the worker is unreachable
+  }, []);
 
   useEffect(() =>
   {
-    const interval = setInterval(() =>
+    let cancelled = false;
+
+    async function cycle()
     {
-      setVisualCount((prev) => (prev >= DEMO_OUTPUTS.length ? 0 : prev + 1));
-    }, 900);
-    return () => clearInterval(interval);
+      let index = 0;
+
+      while(!cancelled)
+      {
+        setThinkingIndex(index);
+
+        // Randomized "thinking" time per item so it doesn't feel mechanical -
+        // some tasks read as quicker/slower than others.
+        await sleep(450 + Math.random() * 500);
+
+        if (cancelled) return;
+
+        setRevealedCount(index + 1);
+        setThinkingIndex(-1);
+
+        await sleep(500 + Math.random() * 700);
+        if (cancelled) return;
+
+        index += 1;
+
+        if(index >= DEMO_OUTPUTS.length)
+        {
+          await sleep(1400); // pause on the full list before looping
+          if (cancelled) return;
+
+          index = 0;
+
+          setRevealedCount(0);
+        }
+      }
+    }
+
+    cycle();
+    return () => {cancelled = true;}
   }, []);
 
   async function handleWaitListSubmit(e: SyntheticEvent<HTMLFormElement>)
@@ -130,12 +181,26 @@ export default function App()
             <div className="hero-card__result">
               <span>AI Output</span>
               <ul>
-                {DEMO_OUTPUTS.map((item, index) =>
-                (
-                  <li key={item} className={index < visualCount ? 'is-visible' : ''}>
-                    {item}
-                  </li>
-                ))}                
+                {
+                  DEMO_OUTPUTS.map((item, index) =>
+                  {
+                    const isRevealed = index < revealedCount;
+                    const isThinking = index === thinkingIndex;
+
+                    return(
+                      <li key={item} className={isRevealed ? "is-visible" : isThinking ? "is-thinking" : ""}>
+                        {
+                          isRevealed ? item : isThinking ? 
+                          (
+                            <span className="thinking-dots" aria-hidden="true">
+                              <span></span><span></span><span></span>
+                            </span>
+                          ) : null
+                        }
+                      </li>
+                    );
+                  })
+                }                
               </ul>
             </div>
           </aside>
@@ -184,6 +249,12 @@ export default function App()
         <section className="waitlist" id="waitlist">
           <p className="eyebrow">Coming Soon</p>
           <h2>Be first in line when the lab opens.</h2>
+          {
+            waitlistCount !== null &&
+            (
+              <p className="waitlist-count">{waitlistCount}+ people already on the list</p>
+            )
+          }
           <p>
              Drop your email below and we'll let you know the moment AI Dream Lab opens its doors.
           </p>

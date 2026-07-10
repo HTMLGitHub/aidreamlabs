@@ -1,0 +1,11 @@
+name = "aidreamlab-counter"
+main = "index.js"
+compatibility_date = "2026-07-10"
+
+[vars]
+BREVO_LIST_ID = "26"
+BASELINE_COUNT = "120"
+ALLOWED_ORIGIN = "https://aidreamlab.com"
+
+# Real secret is set via CLI, never committed:
+# wrangler secret put BREVO_API_KEY
