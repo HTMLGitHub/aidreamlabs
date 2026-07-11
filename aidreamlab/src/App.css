@@ -215,13 +215,14 @@
 {
   display: grid;
   gap: 8px;
-  padding-left: 18px;
+  padding-left: 0;
   color: #c8c9d8;
   line-height: 1.5;
 }
 
 .hero-card__result li
 {
+  list-style: none;
   min-height: 1.4em;
   opacity: 0;
   transform: translateX(-6px);
