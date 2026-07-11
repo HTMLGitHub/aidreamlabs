@@ -239,11 +239,14 @@
 .thinking-dots
 {
   display: inline-flex;
+  flex-direction: row;
+  align-items: center;
   gap: 4px;
 }
 
 .thinking-dots span
 {
+  flex-shrink: 0;
   width: 5px;
   height: 5px;
   border-radius: 50%;
