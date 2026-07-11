@@ -193,8 +193,8 @@
 }
 
 /* Labels inside the preview console. */
-.hero-card__prompt span,
-.hero-card__result span
+.hero-card__prompt > span,
+.hero-card__result > span
 {
   display: block;
   margin-bottom: 10px;
@@ -239,14 +239,11 @@
 .thinking-dots
 {
   display: inline-flex;
-  flex-direction: row;
-  align-items: center;
   gap: 4px;
 }
 
 .thinking-dots span
 {
-  flex-shrink: 0;
   width: 5px;
   height: 5px;
   border-radius: 50%;
