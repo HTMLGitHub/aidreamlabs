@@ -123,6 +123,14 @@
   margin-top: 34px;
 }
 
+.hero__timing
+{
+  margin-top: 14px;
+  color: #8d90a6;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 /* Shared button styling. */
 .button {
   display: inline-flex;
@@ -478,14 +486,6 @@
   .hero-card
   {
     padding: 22px;
-  }
-   
-  .hero__timing
-  {
-    margin-top: 14px;
-    color: #8d90a6;
-    font-size: 0.85rem;
-    font-weight: 600;
   }
    
   .feature-grid,
