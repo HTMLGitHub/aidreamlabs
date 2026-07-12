@@ -480,6 +480,14 @@
     padding: 22px;
   }
 
+  .hero__timing
+   {
+     margin-top: 14px;
+     color: #8d90a6;
+     font-size: 0.85rem;
+     font-weight: 600;
+   }
+   
   .feature-grid,
   .dazbog-section
   {
