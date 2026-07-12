@@ -162,6 +162,7 @@ export default function App()
               <a href="#waitlist" className="button button--primary">Join the waitlist</a>
               <a href="#features" className="button button--secondary">See Features</a>
             </div>
+            <p className="hero__timing">Opening November 2026</p>
           </div>
 
           <aside className="hero-card" aria-label="AI Dream Lab preview">
@@ -247,7 +248,7 @@ export default function App()
         </section>
 
         <section className="waitlist" id="waitlist">
-          <p className="eyebrow">Coming Soon</p>
+          <p className="eyebrow">Opening November 2026</p>
           <h2>Be first in line when the lab opens.</h2>
           {
             waitlistCount !== null &&
