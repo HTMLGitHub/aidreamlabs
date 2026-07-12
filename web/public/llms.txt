@@ -1,0 +1,10 @@
+# AIDreamLab
+
+> AI-powered photo, video, and avatar generation. Turn one photo into face swaps, talking portraits, videos, and more.
+
+AIDreamLab lets people upload a single photo and generate face swaps, AI avatars, talking portraits, and short videos.
+
+## Key facts
+- Try a generation for free, no signup or credit card required
+- Paid plans start with a 5-day trial and 3,000 bonus credits
+- Tools: face swap, image restyle, image-to-video, AI avatar chat, text-to-speech (coming soon)
