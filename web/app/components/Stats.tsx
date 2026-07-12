@@ -1,8 +1,8 @@
 const STATS = 
 [
-    {value: "0", label: "images generated"},
-    {value: "0", label: "videos created"},
-    {value: "0", label: "faces swapped"},
+    {value: "0", label: "Images Generated"},
+    {value: "0", label: "Videos Created"},
+    {value: "0", label: "Faces Swapped"},
 ];
 
 export default function Stats()
