@@ -1,5 +1,6 @@
 "use client"
 
+import Hero from "./components/Hero";
 import { useEffect, useState } from "react";
 import 
 {
@@ -38,6 +39,7 @@ export default function Page()
 
     return(
         <div>
+            <Hero/>
             {
                 user ?
                 (
