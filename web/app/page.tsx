@@ -1,5 +1,7 @@
 "use client"
 
+import ExampleGallery from "./components/ExampleGallery";
+import FounderNote from "./components/FounderNote";
 import Hero from "./components/Hero";
 import Pillars from "./components/Pillars";
 import Stats from "./components/Stats";
@@ -13,6 +15,8 @@ export default function Page()
             <TryItDemo/>
             <Stats/>
             <Pillars/>
+            <FounderNote/>
+            <ExampleGallery/>
         </>
     )
 }
