@@ -1,0 +1,23 @@
+name = "reloop-api"
+main = "src/index.ts"
+compatibility_date = "2026-07-10"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ALLOWED_ORIGIN = "http://localhost:5173"
+APP_URL = "http://localhost:5173"
+FREE_DAILY_LIMIT = "3"
+MODEL = "claude-sonnet-5"
+STRIPE_PRICE_ID = "price_replace_me"
+
+# KV namespace used for rate limiting + pro-subscriber lookups.
+# Create with: wrangler kv namespace create RELOOP_KV
+# then paste the returned id below (and again for [[env.production.kv_namespaces]] if used).
+[[kv_namespaces]]
+binding = "RELOOP_KV"
+id = "replace_with_kv_namespace_id"
+
+# Secrets (never committed — set via CLI):
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put STRIPE_SECRET_KEY
+#   wrangler secret put STRIPE_WEBHOOK_SECRET
