@@ -350,6 +350,64 @@
   line-height: 1.65;
 }
 
+/* Founding member paid pre-order section. */
+.founding {
+  width: min(1120px, 92%);
+  margin: 72px auto 0;
+}
+
+.founding-card {
+  padding: 40px;
+  text-align: center;
+  border: 1px solid rgba(158, 164, 255, 0.32);
+  border-radius: 30px;
+  background: linear-gradient(160deg, rgba(158, 164, 255, 0.14), rgba(255, 255, 255, 0.04));
+}
+
+.founding-card h2 {
+  color: #f7f7fb;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.founding-card__description {
+  max-width: 620px;
+  margin: 18px auto 0;
+  color: #c8c9d8;
+  line-height: 1.7;
+}
+
+.founding-card__perks {
+  max-width: 480px;
+  margin: 26px auto;
+  padding-left: 0;
+  display: grid;
+  gap: 10px;
+  color: #c8c9d8;
+  list-style: none;
+  text-align: left;
+}
+
+.founding-card__perks li {
+  padding-left: 26px;
+  position: relative;
+}
+
+.founding-card__perks li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: #9ea4ff;
+  font-weight: 800;
+}
+
+.founding-card__note {
+  margin-top: 16px;
+  color: #8d90a6;
+  font-size: 0.85rem;
+}
+
 /* Dazbog explanation section. */
 .dazbog-section {
   margin-top: 72px;
@@ -497,6 +555,16 @@
   .dazbog-section
   {
     margin-top: 56px;
+    padding: 26px;
+  }
+
+  .founding
+  {
+    margin-top: 56px;
+  }
+
+  .founding-card
+  {
     padding: 26px;
   }
 

@@ -19,6 +19,10 @@ function sleep(ms: number)
 
 const COUNTER_ENDPOINT = 'https://aidreamlab-counter.quantumarcllc.workers.dev';
 
+// Replace with your real Stripe Payment Link (Stripe Dashboard > Payment Links > New).
+// Until this is replaced, the founding member button links nowhere useful.
+const STRIPE_FOUNDING_MEMBER_LINK = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
+
 export default function App()
 {
   const [email, setEmail] = useState('');
@@ -140,6 +144,7 @@ export default function App()
 
         <nav className="site-nav" aria-label="Main navigation">
           <a href="#features">Features</a>
+          <a href="#founding">Founding Access</a>
           <a href="#dazbog">Dazbog Link</a>
           <a href="#waitlist">Waitlist</a>
         </nav>
@@ -231,6 +236,33 @@ export default function App()
               <h3>Brand workspace</h3>
               <p>Keep tones, ideas, drafts, and reusable brand direction in one place.</p>
             </article>
+          </div>
+        </section>
+
+        <section className="founding" id="founding">
+          <div className="founding-card reveal">
+            <p className="eyebrow">Limited founding offer</p>
+            <h2>Lock in founding member pricing today.</h2>
+            <p className="founding-card__description">
+              Pay a one-time $19 deposit now and get 50% off your first year when AI Dream Lab
+              launches in November 2026, plus priority access before the public waitlist.
+            </p>
+
+            <ul className="founding-card__perks">
+              <li>50% off your first year at launch</li>
+              <li>Priority access ahead of the public waitlist</li>
+              <li>Founding member badge on your account</li>
+            </ul>
+
+            <a
+              href={STRIPE_FOUNDING_MEMBER_LINK}
+              className="button button--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Become a Founding Member - $19
+            </a>
+            <p className="founding-card__note">One-time payment. Fully refundable if we don't launch.</p>
           </div>
         </section>
 

@@ -46,6 +46,17 @@ cd aidreamlab
 npm run build
 ```
 
+## Founding Member Pre-Order
+
+The landing page includes a paid "Founding Member" section (`$19` one-time deposit for
+50% off at launch + priority access), backed by a Stripe Payment Link. To activate it:
+
+1. In the [Stripe Dashboard](https://dashboard.stripe.com), create a one-time Product/Price for the offer.
+2. Create a Payment Link for that price (Payment Links > New).
+3. Replace `STRIPE_FOUNDING_MEMBER_LINK` in `aidreamlab/src/App.tsx` with your real Payment Link URL.
+
+Until step 3 is done, the "Become a Founding Member" button points at a placeholder URL.
+
 ## Deployment
 
 The site deploys through GitHub Actions using:
